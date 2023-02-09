@@ -7,6 +7,8 @@ geometry: "left = 2cm, right = 2cm, top = 2cm, bottom = 2cm"
 fontsize: 12pt
 header-includes:
   - \usepackage{setspace}\spacing{1.5}
+  
+bibliography: References.bib
 ---
 
 ```{r setup, include=FALSE}
@@ -77,3 +79,13 @@ in partial fulfillment of the requirements for\\ the degree of Master of Statist
 |       In the spring of 2020, the deficit of adequate resources for Black women was proven evident with the surge of COVID-19 and the subsequent deaths of George Floyd and Breonna Taylor. Even with nationwide attention on these issues, Black women continued to suffer in silence under the pretense that they are "strong": perpetually shouldering the burdens of others with no space for their own (Pappas, 2021). Consequently, Black women as a population experience disparities in quality of life that no other group in the U.S. do, most of which can be attributed to social-environmental factors. They are at higher risk for breast cancer, stroke, diabetes, and hypertension; and the Black community overall experienced two to three times more complications or death from COVID-19 than the general U.S. population (Menifield & Clark, 2021). With regard to mental health, Black women are half as likely to seek services compared to their white counterparts, and documented studies suggest one reason for this is the lack of cultural competency among providers (Abrams et al., 2018).
 
 |       In the context of this study, the population of interest is Black women in academia. They make up 4% of college and university faculty, among whom they must navigate unwelcoming--sometimes hostile--environments (NCES, 2020). The barriers previously mentioned have contributed to the marginalization and isolation of Black women in academia; but by examining potential associations extracted from respondent data, methods for healthy and impactful coping mechanisms can be identified. The data is derived from a survey conducted in April 2022, to learn how Black women were coping post-pandemic. Approximately 2680 participants provided responses to 70 questions. Aside from demographic information, the topics covered in the survey include COVID-19, anti-Black racism, depression, anxiety, and coping. The analysis presented in the following sections is driven by structural modeling methods. In lieu of significance testing,  the objective is to determine the prominent factors that influence the extent to which Black women suffer from depression, anxiety, and other mental health issues.
+
+<!---CITATIONS PAGE--->
+
+\newpage
+
+# References
+
+---
+nocite: '@Pappa, @Menif, @Abram, @NCES'
+---
