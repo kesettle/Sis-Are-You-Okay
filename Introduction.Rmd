@@ -1,0 +1,79 @@
+---
+title: " "
+output:
+  pdf_document:
+ #   number_sections: TRUE
+geometry: "left = 2cm, right = 2cm, top = 2cm, bottom = 2cm"
+fontsize: 12pt
+header-includes:
+  - \usepackage{setspace}\spacing{1.5}
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+<!---TITLE PAGE--->
+
+```{=tex}
+\begin{centering}
+
+
+\large
+
+{\bf "SIS, ARE YOU OKAY?": A FACTOR ANALYSIS TO IDENTIFY THE RAMIFICATIONS OF SYSTEMIC RACISM ON THE PSYCHOLOGICAL WELL-BEING OF BLACK WOMEN IN U.S. AMERICAN ACADEMIA}
+
+\vspace{1.5 cm}
+
+\singlespace
+
+\normalsize
+Authored By
+
+\vspace{0.5 cm}
+\large
+
+{\bf BENNETT McAULEY\\ KATELYN SETTLEMORE\\ \& \\ DIDIER TURCIOS}
+
+{\bf North Carolina State University\\ Department of Statistics}
+
+\vspace{1.5 cm}
+
+\normalsize
+
+in partial fulfillment of the requirements for\\ the degree of Master of Statistics;\\ and in collaboration with our client et al.:
+
+\vspace{1 cm}
+
+\large
+
+{\bf JOCELYN TALIAFERRO, MSW, PhD}
+
+{\bf North Carolina State University\\ School of Social Work}
+
+{\bf \& \\ DIAMOND MEADOWS, MSW}
+
+{\bf East Tennessee State University\\ Department of Psychology}
+
+\vspace{1.5 cm}
+
+\normalsize
+{May 2023}
+
+\end{centering}
+```
+
+<!---INTRODUCTION & OTHER CONTENT STARTS HERE--->
+
+\newpage
+\doublespacing
+
+# Introduction
+
+|       The United States has a persistent history of encouraging and enforcing discrimination, oppression, and other forms prejudice against African Americans, of whom are often simply characterized as "Black". The turbulent relationship between the Black community and the institutions of government, education, healthcare, law enforcement, social services, and even housing, is a compounded byproduct of historical bylaws--most infamously, the era of Jim Crow laws (c. 1877-1964)--that have yet to be unraveled from the fabric of U.S. American culture and politics.
+
+|       Racially-motivated violence has been the cornerstone of the Black experience for the entirety of the community's documented history. Paradoxically, Black people are more susceptible to bouts of national trepidation, but are expected to show the most resilience. With the additional intersection of gender, Black *women* are especially vulnerable, but are often neglected in policies and actions designed to alleviate the stressors of U.S. residents.
+
+|       In the spring of 2020, the deficit of adequate resources for Black women was proven evident with the surge of COVID-19 and the subsequent deaths of George Floyd and Breonna Taylor. Even with nationwide attention on these issues, Black women continued to suffer in silence under the pretense that they are "strong": perpetually shouldering the burdens of others with no space for their own (Pappas, 2021). Consequently, Black women as a population experience disparities in quality of life that no other group in the U.S. do, most of which can be attributed to social-environmental factors. They are at higher risk for breast cancer, stroke, diabetes, and hypertension; and the Black community overall experienced two to three times more complications or death from COVID-19 than the general U.S. population (Menifield & Clark, 2021). With regard to mental health, Black women are half as likely to seek services compared to their white counterparts, and documented studies suggest one reason for this is the lack of cultural competency among providers (Abrams et al., 2018).
+
+|       In the context of this study, the population of interest is Black women in academia. They make up 4% of college and university faculty, among whom they must navigate unwelcoming--sometimes hostile--environments (NCES, 2020). The barriers previously mentioned have contributed to the marginalization and isolation of Black women in academia; but by examining potential associations extracted from respondent data, methods for healthy and impactful coping mechanisms can be identified. The data is derived from a survey conducted in April 2022, to learn how Black women were coping post-pandemic. Approximately 2680 participants provided responses to 70 questions. Aside from demographic information, the topics covered in the survey include COVID-19, anti-Black racism, depression, anxiety, and coping. The analysis presented in the following sections is driven by structural modeling methods. In lieu of significance testing,  the objective is to determine the prominent factors that influence the extent to which Black women suffer from depression, anxiety, and other mental health issues.
