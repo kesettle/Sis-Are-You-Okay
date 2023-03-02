@@ -80,6 +80,16 @@ in partial fulfillment of the requirements for\\ the degree of Master of Statist
 
 |       In the context of this study, the population of interest is Black women in academia. They make up 4% of college and university faculty, among whom they must navigate unwelcoming--sometimes hostile--environments (NCES, 2020). The barriers previously mentioned have contributed to the marginalization and isolation of Black women in academia. By examining potential associations extracted from respondent data, methods for healthy and impactful coping mechanisms can be identified. Data is derived from a survey conducted in April 2022, to learn how Black women were coping post-pandemic. Approximately 2680 participants responded to 70 questions. In addition to demographic information, the topics covered in the survey included COVID-19, anti-Black racism, depression, anxiety, and coping. The analysis presented in the following sections is driven by structural modeling methods. In lieu of significance testing,  the objective of the study is to determine prominent factors that influence the extent to which Black women suffer from depression, anxiety, and other mental health issues.
 
+<!---METHODS PAGE--->
+
+# Data Analysis & Methodology
+
+## EFA
+
+## SFA
+
+## Why these methods?
+
 <!---CITATIONS PAGE--->
 
 \newpage
