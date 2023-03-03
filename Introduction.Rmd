@@ -82,11 +82,22 @@ in partial fulfillment of the requirements for\\ the degree of Master of Statist
 
 <!---METHODS PAGE--->
 
-# Data Analysis & Methodology
+# Data Analysis Methodology
 
-## EFA
+## Structural Equation Modeling (SEM)
 
-## SFA
+## Exploratory Factor Analysis (EFA)
+
+|       In Chapter 8.3 of *R For Marketing Research and Analysis*, Chapman and Feit (2019) describe Exploratory Factor Analysis (EFA) as a family of techniques used to assess the relationship of *constructs* (concepts) in surveys and psychological assessments. Factors are regarded as *latent variables* that cannot be observed directly--as one might in a simple linear model--but are associated through their relationship to other variables. For example, abstract concepts such as intelligence, personal preference, and emotions are not observable independently or empirically. Instead, they are measured with a number of indicators known as *manifest variables*, which are empirical factors and behaviors(e.g. GPA, survey responses, and so on) that, in tandem, provide an imperfect explanation to the underlying latent variables.
+
+|       The goal of EFA is to find the degree to which the latent variables account for observed the variance of the manifest variables. The result is similar to Principle Components Analysis (PCA), where linear combinations or mixtures of the initial variables reduce the dimensionality of the data while retaining as much information as possible. What separates EFA from PCA, however, is the interpretability of the loadings on the variables. In other words, EFA optimizes solutions that favor intuition in terms of the original variables so the user can test whether the data is consistent with expectations.
+
+|       To find a solution using EFA the following steps are generally implemented with a variety of tools and techniques:
+|           1. **Determine the number of factors to estimate and test**. In R, this can be done by constructing a            *scree plot*, a line plot of the eigenvalues of factors or principal components and retaining the ones that are greater than 1.0. An eigenvalue of 1.0 corresponds to the amount of variance that can be attributed to a single independent variable.
+
+|           2. **Extract factors for modeling**. Determine the variable loadings using PCA, maximum likelihood, or other methods to select the $k$ (limited to the number suggested in Step 1) factors to include and interpret. Trying more than one value of $k$--none beyond $k \pm 1$--is recommended to determine which model yields stronger interpretability.
+
+|           3. **Rotate the loadings**. The purpose of rotation is to determine whether correlation between factors should be allowed or not. Software cannot interpret the context of the *latent variables*, but rotation can assist in deciding if, conceptually, factors should be considered independent or if it makes more sense for them to be related. One of two types of rotations can be applied: *orthogonal* and *oblique*. Orthogonal rotation, as its name implies, assumes that factors *do not* correlate. While this method is the default among most software and languages, it is not always the more plausible. Oblique rotation, on the other hand, assumes that factors can and *do* correlate, and considers how.
 
 ## Why these methods?
 
@@ -97,5 +108,5 @@ in partial fulfillment of the requirements for\\ the degree of Master of Statist
 # References
 
 ---
-nocite: '@Pappa, @Menif, @Abram, @NCES'
+nocite: '@Pappa, @Menif, @Abram, @NCES, @Chapm'
 ---
