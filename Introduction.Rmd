@@ -86,7 +86,7 @@ in partial fulfillment of the requirements for\\ the degree of Master of Statist
 
 ## The Data
 |       A survey was conducted via a paid panel to find out how Black women across the United States were coping.  Data was collected in April 2022, gathering 2631 respondents. The survey consisted of 70 questions, asking about the following domains: COVID-19, Anti-Black Racism, Depression, Anxiety, and Demographic information.  
-|       The raw data consists of 157 variables and 2631 subjects. Since this research focuses on Black women, there were questions to screen out subjects who were not Black adult females that consented to the survey. Removing subjects who were screened out, there were 2260 subjects that fit the requirements. Variables that were irrelevant to analysis were also removed, such as personal information or variables that had been recoded, leaving 80 variables for analysis. The data has also been validated, checking for potential duplications in the event a respondent had to restart the survey, and ensuring values for a given variable are all of the same type (e.g., all ‘age’ values are numeric).
+|       The raw data consists of 157 variables and 2631 subjects. Since this research focuses on Black women, there were questions to screen out subjects who were not Black adult females that consented to the survey. Removing subjects who were screened out, there were 2260 subjects that fit the requirements. Variables that were irrelevant to analysis were also removed, such as personal information or variables that had been recoded, leaving 80 variables for analysis. The data has also been validated, checking for potential duplications in the event a respondent had to restart the survey, and ensuring values for a given variable are all of the same type (e.g., all `age` values are numeric).
 
 
 ## Structural Equation Modeling (SEM)
@@ -113,7 +113,7 @@ in partial fulfillment of the requirements for\\ the degree of Master of Statist
 ## Why these methods?
 |       The parameters of interest for this study are depression and anxiety. One might opt for regression methods. However, where regression aims to predict a given variable, we are instead interested in the relationship between variables. Both SEM and EFA aim to explain relationships between variables. Additionally, depression and anxiety are not able to be measured directly, meaning they are latent variables, making these methods good options for our data.  
 |       One can see data has high dimensionality. These methods have also been chosen for dimension reduction. Why, then, do we not use principal component analysis (PCA)? PCA seems like a good option since it is also a dimension reduction technique. However, the goal of PCA is to capture as much variability as possible with linear combinations of the variables, called principal components (PCs). It does not make model assumption, whereas EFA and SEM propose models and tests whether the data fits those models. In PCA, the PCs cannot be interpreted since there is no underlying structure. Our chosen methods have constructs that are able to be easily interpreted.  
-*EFA and SEM are similar. How do they differ and why do we want this?*  
+|       The two methods we have chosen are very similar to each other, but there is a subtle difference. EFA identifies relationships among variables, whereas SEM is used to determine the extent to which assumptions about the relationships among variables are supported by data (Ockey, 2013). In this study, we identify relationships with EFA and assess these relationships using SEM.
 
 
 <!---CITATIONS PAGE--->
@@ -123,5 +123,5 @@ in partial fulfillment of the requirements for\\ the degree of Master of Statist
 # References
 
 ---
-nocite: '@Pappa, @Menif, @Abram, @NCES, @Chapm'
+nocite: '@Pappa, @Menif, @Abram, @NCES, @Chapm, @Ockey'
 ---
