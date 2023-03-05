@@ -85,16 +85,9 @@ in partial fulfillment of the requirements for\\ the degree of Master of Statist
 # Data Analysis Methodology
 
 ## The Data
-*Main points:*  
--	Collected using paid panel  
--	70 question survey to find out how Black women were coping  
--	Asked about Covid, Racism, Depression, Anxiety, Coping, and Demographics  
--	Screened out participants to only include consenting Black adult (18+) females  
--	Raw data contained 157 variables, many removed for analysis such as personal information and variables that were recoded  
--	~79 variables left after subsetting to remove and removing irrelevant variables  
--	Went from 2631 observations to 2260 after removing those who were screened out  
--	Data cleaning (such as updating character entries found in a numeric variable), handle missing values (such as age) and repeats (survey refresh/kicked out and restarted)  
-- *what else?*
+|       A survey was conducted via a paid panel to find out how Black women across the United States were coping.  Data was collected in April 2022, gathering 2631 respondents. The survey consisted of 70 questions, asking about the following domains: COVID-19, Anti-Black Racism, Depression, Anxiety, and Demographic information.  
+|       The raw data consists of 157 variables and 2631 subjects. Since this research focuses on Black women, there were questions to screen out subjects who were not Black adult females that consented to the survey. Removing subjects who were screened out, there were 2260 subjects that fit the requirements. Variables that were irrelevant to analysis were also removed, such as personal information or variables that had been recoded, leaving 80 variables for analysis. The data has also been validated, checking for potential duplications in the event a respondent had to restart the survey, and ensuring values for a given variable are all of the same type (e.g., all ‘age’ values are numeric). __*Missing data is handled how? Or do we mention this right now?*__  
+*what else?*
 
 
 ## Structural Equation Modeling (SEM)
@@ -119,17 +112,9 @@ in partial fulfillment of the requirements for\\ the degree of Master of Statist
 |           3. **Rotate the loadings**. The purpose of rotation is to determine whether correlation between factors should be allowed or not. Software cannot interpret the context of the *latent variables*, but rotation can assist in deciding if, conceptually, factors should be considered independent or if it makes more sense for them to be related. One of two types of rotations can be applied: *orthogonal* and *oblique*. Orthogonal rotation, as its name implies, assumes that factors *do not* correlate. While this method is the default among most software and languages, it is not always the more plausible. Oblique rotation, on the other hand, assumes that factors can and *do* correlate, and considers how.
 
 ## Why these methods?
-*Main points*  
--	High dimensionality in our data  
--	These are dimension reduction methods  
--	Interest in predicting anxiety and depression, which have many influencing (manifest) variables and thus cannot be observed directly (anxiety and depression $\Rightarrow$ latent variables)  
-- Why not regression? regression aims to predict, while EFA and SEM aim to explain relationships between variables  
--	PCA is also a dimension reduction method, but we lose interpretability and new factors are uncorrelated  
--	EFA takes correlation into account – we can choose uncorrelated (orthogonal) or allow correlation (oblique) [we might need to allow correlation]  
-- part of PCA vs EFA from Wikipedia: "Factor analysis is clearly designed with the objective to identify certain unobservable factors from the observed variables, whereas PCA does not directly address this objective; at best, PCA provides an approximation to the required factors. From the point of view of exploratory analysis, the eigenvalues of PCA are inflated component loadings, i.e., contaminated with error variance."  
-- From ST 537 notes: PCA makes no model assumption, attempts to capture most of the total variance, doesn't account for measurement errors in observed vars, orthogonal by construction, and PCs are linear combos of vars. EFA assumes a specific model and estimates params, tries to max the variance due to common factors, can accommodate measurement errors in vars through specific factors, is able to have oblique models that allow for correlation, and the vars are linear combos of latent factors.  
-- *need more on SEM*  
-- *EFA and SEM are similar. How do they differ and why do we want this?*  
+|       The parameters of interest for this study are depression and anxiety. One might wonder, why not use regression methods? However, where regression aims to predict a given variable, we are instead interested in the relationship between variables. Both SEM and EFA aim to explain relationships between variables. Additionally, depression and anxiety are not able to be measured directly, meaning they are latent variables, making these methods good options for our data.  
+|       One can see data has high dimensionality. These methods have also been chosen for dimension reduction. Why, then, do we not use principal component analysis (PCA)? PCA seems like a good option since it is also a dimension reduction technique. However, the goal of PCA is to capture as much variability as possible with linear combinations of the variables, called principal components (PCs). It does not make model assumption, whereas EFA and SEM propose models and tests whether the data fits those models. In PCA, the PCs cannot be interpreted since there is no underlying structure. Our chosen methods have constructs that are able to be easily interpreted.  
+*EFA and SEM are similar. How do they differ and why do we want this?*  
 
 
 <!---CITATIONS PAGE--->
