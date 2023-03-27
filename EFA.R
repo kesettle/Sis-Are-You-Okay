@@ -2,10 +2,21 @@
 install.packages("nFactors")
 install.packages("semPlot")
 install.packages("GPArotation")
+install.packages("parameters")
+install.packages("performance")
+
 library(nFactors)
 library(semPlot)
 library(GPArotation)
 library(tidyverse)
+library(psych)
+library(parameters)
+library(performance)
+library(lavaan)
+
+#-----Checking that dataset is suitable for factor analysis-----#
+#Yes, very much so!
+performance::check_factorstructure(okDat)
 
 
 #-----Find principal components-----#
@@ -22,8 +33,10 @@ plot(PCs, type = 'l')
 par(mfrow = c(1, 2))
 plot(PCs$sdev^2/sum(PCs$sdev^2), xlab = "Principal Component",
      ylab = "Proportion of Variance Explained", ylim = c(0, 1), type = 'b')
+abline(v=15)
 plot(cumsum(PCs$sdev^2/sum(PCs$sdev^2)), xlab = "Principal Component",
      ylab = "Cum. Prop of Variance Explained", ylim = c(0, 1), type = 'b')
+abline(v = c(5,10,15), h = c(0.4,0.5,0.6))
 
 
 #-----Estimate number of factors to retain with scree test-----#
@@ -40,9 +53,8 @@ round(eigen(cor(pcDat))$values, 4)
 
 #-----Estimate and Compare EFA models with k = 5 vs 15 factors-----#
 
-okEFA5 <- factanal(pcDat, factors = 5, scores = "regression", rotation = "oblimin")
 okEFA15 <- factanal(pcDat, factors = 15, scores = "regression", rotation = "oblimin")
-
+EFAPromax <- factanal(pcDat, factors = 15, scores = "regression", rotation = "promax")
 
 #Chi-square test for model differences:
 #H0: Chisq5 - Chisq15 = 0; both models fit equally well, so smaller model is sufficient
@@ -54,5 +66,14 @@ df_diff <- okEFA5$dof - okEFA15$dof
 
 chi <- qchisq(0.05, df_diff, lower.tail = FALSE)
 
-print(okEFA15$loadings, sort = TRUE, cutoff = 0.2)
+print(okEFA15$loadings, sort = TRUE, cutoff = 0.3)
+print(EFAPromax$loadings, sort = TRUE, cutoff = 0.3)
 
+#-----Fit EFA using psych package-----#
+faOK <- fa(pcDat, nfactors = 15) %>%
+  model_parameters(sort = TRUE, threshold = "max")
+
+#Determining number of factors to retain based on various methods/metrics
+n <- n_factors(pcDat)
+
+plot(n) + see::theme_modern()

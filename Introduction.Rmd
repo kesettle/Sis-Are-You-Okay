@@ -23,7 +23,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 \large
 
-{\bf "SIS, ARE YOU OKAY?": A FACTOR ANALYSIS TO IDENTIFY THE RAMIFICATIONS OF SYSTEMIC RACISM ON THE PSYCHOLOGICAL WELL-BEING OF BLACK WOMEN IN U.S. AMERICAN ACADEMIA}
+{\bf "SIS, ARE YOU OKAY?": A FACTOR ANALYSIS TO IDENTIFY THE RAMIFICATIONS OF SYSTEMIC RACISM ON THE PSYCHOLOGICAL WELL-BEING OF BLACK WOMEN IN THE UNITED STATES}
 
 \vspace{1.5 cm}
 
@@ -78,17 +78,25 @@ in partial fulfillment of the requirements for\\ the degree of Master of Statist
 
 |       In the spring of 2020, the deficit of adequate resources for Black women was proven evident with the surge of COVID-19 and the subsequent deaths of George Floyd and Breonna Taylor. Even with nationwide attention on these issues, Black women continued to suffer in silence under the pretense that they are "strong": perpetually shouldering the burdens of others with no space for their own (Pappas, 2021). Consequently, Black women as a population experience disparities in quality of life that no other group in the U.S. do, most of which can be attributed to social-environmental factors. They are at higher risk for breast cancer, stroke, diabetes, and hypertension; the Black community overall experienced two to three times more complications or death from COVID-19 than the general U.S. population (Menifield & Clark, 2021). Concerning mental health, Black women are half as likely to seek services compared to their white counterparts, and documented studies suggest one reason for this is the lack of cultural competency among providers (Abrams et al., 2018).
 
-|       In the context of this study, the population of interest is Black women in academia. They make up 4% of college and university faculty, among whom they must navigate unwelcoming--sometimes hostile--environments (NCES, 2020). The barriers previously mentioned have contributed to the marginalization and isolation of Black women in academia. By examining potential associations extracted from respondent data, methods for healthy and impactful coping mechanisms can be identified. Data is derived from a survey conducted in April 2022, to learn how Black women were coping post-pandemic. Approximately 2680 participants responded to 70 questions. In addition to demographic information, the topics covered in the survey included COVID-19, anti-Black racism, depression, anxiety, and coping. The analysis presented in the following sections is driven by structural modeling methods. In lieu of significance testing,  the objective of the study is to determine prominent factors that influence the extent to which Black women suffer from depression, anxiety, and other mental health issues.
+|       In the context of this study, the population of interest is Black women over the age of 18. The barriers previously mentioned have contributed to the marginalization and isolation of Black women in their home lives and in public spaces. By examining potential associations extracted from respondent data, methods for healthy and impactful coping mechanisms can be identified. Data is derived from a survey conducted in April 2022, to learn how Black women were coping during the pandemic. Approximately 2680 participants responded to 70 questions. In addition to demographic information, the topics covered in the survey included COVID-19, anti-Black racism, depression, anxiety, and coping. The analysis presented in the following sections is driven by structural modeling methods. In lieu of significance testing,  the objective of the study is to determine prominent factors that influence the extent to which Black women suffer from depression, anxiety, and other mental health issues.
 
 <!---METHODS PAGE--->
 
-# Data Analysis Methodology
+# Methodology
 
 ## The Data
 
 |       A survey was conducted via a paid panel to find out how Black women across the United States were coping. Data was collected from April to December 2022, accumulating 2631 respondents. The survey consisted of 70 questions asking about the following domains: COVID-19, Anti-Black Racism, Depression, Anxiety, and Demographic information.  
 
 |       The raw data consists of 157 variables and 2631 subjects. Since this research focuses on Black women, there were questions to screen out participants who were not adult, Black females that consented to the survey. There were 2260 subjects that fit the requirements. Variables that were irrelevant to analysis were also removed, such as personal information or variables that had been recoded, leaving 80 variables for analysis. The data has also been validated by removing potential duplicates (i.e., a respondent had to restart the survey and was recorded twice); and ensuring values for a given variable are all of the same type (e.g., all values for `age` are numeric).
+
+|       Initially, we believed this was sufficient for implementing the methods outlined in the following sections. During preliminary testing, however, two other issues with the data surfaced: missing values and linear dependencies. Factor analysis methods will not do any calculations with *any* missing values, and often throw an error. They are also susceptible to generating factors with egregious inflated variances if there are variables that can be expressed as linear combinations of others. So, variables and observations that met the following criteria were filtered out:
+
+- Open-ended responses, as they cannot be applied to any statistical modeling methods
+- The proportion of NA observations. Each variable either consists of more than 95% empty observations, or less than 15%. In the former case, the variable was omitted. In the latter case, the observations with the NA value(s) were removed.
+- Variables that represent composite scores (the sums or averages of other variables), which were causing the redundancy and linear dependence in the data. 
+
+|       The final dataset consists of 65 variables and 1450 subjects. For many applications, this may be a concern, but as the rest of the report will show, this proved beneficial in containing the volume before applying any algorithmic dimension reduction.
 
 
 ## Structural Equation Modeling (SEM)
@@ -120,6 +128,15 @@ in partial fulfillment of the requirements for\\ the degree of Master of Statist
 |       One can see the data has high dimensionality. These methods have also been chosen for dimension reduction. Why, then, do we not use principal component analysis (PCA)? PCA *seems* like a good option since it is also a dimension reduction technique. However, the goal of PCA is to capture as much variability as possible with linear combinations of the variables, called principal components (PCs). It does not make any model assumptions, whereas EFA and SEM propose models and test whether the data fits those models. With PCA, the PCs cannot be interpreted since there is no underlying structure. Our chosen methods have constructs that are easy to interpret.
 
 |       The two methods we have chosen are very similar, but there is a subtle difference. EFA identifies relationships among variables, whereas SEM is used to determine the extent to which assumptions about the relationships among variables are supported by data (Ockey, 2013). In this study, we identify relationships with EFA and assess these relationships using SEM.
+
+# Results
+
+## Factor Extraction
+
+## Model Estimation & Evaluation
+
+# Discussion
+
 
 
 <!---CITATIONS PAGE--->
