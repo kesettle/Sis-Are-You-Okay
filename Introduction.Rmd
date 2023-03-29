@@ -155,7 +155,7 @@ in partial fulfillment of the requirements for\\ the degree of Master of Statist
 
 |       The resulting loadings are listed in the table below, with our interpretations for each grouping of variables.
 
-[table here lol]
+![Table of the variables, loadings, and the factors that will serve as the basis for the SEM model]("factor_loadings.pdf")
 
 ## Model Estimation & Evaluation
 
