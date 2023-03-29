@@ -54,20 +54,10 @@ round(eigen(cor(pcDat))$values, 4)
 #-----Estimate and Compare EFA models with k = 5 vs 15 factors-----#
 
 okEFA15 <- factanal(pcDat, factors = 15, scores = "regression", rotation = "oblimin")
-EFAPromax <- factanal(pcDat, factors = 15, scores = "regression", rotation = "promax")
-
-#Chi-square test for model differences:
-#H0: Chisq5 - Chisq15 = 0; both models fit equally well, so smaller model is sufficient
-#HA: Chisq 5 - Chisq15 =/= 0; larger model fits data better than smaller model
-
-chi_diff <- okEFA5$STATISTIC - okEFA15$STATISTIC
-df_diff <- okEFA5$dof - okEFA15$dof
-
-
-chi <- qchisq(0.05, df_diff, lower.tail = FALSE)
+#EFAPromax <- factanal(pcDat, factors = 15, scores = "regression", rotation = "promax")
 
 print(okEFA15$loadings, sort = TRUE, cutoff = 0.3)
-print(EFAPromax$loadings, sort = TRUE, cutoff = 0.3)
+
 
 #-----Fit EFA using psych package-----#
 faOK <- fa(pcDat, nfactors = 15) %>%

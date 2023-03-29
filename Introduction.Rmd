@@ -12,7 +12,9 @@ bibliography: References.bib
 ---
 
 ```{r setup, include=FALSE}
+source('data cleaning.R')
 knitr::opts_chunk$set(echo = TRUE)
+
 ```
 
 <!---TITLE PAGE--->
@@ -115,7 +117,7 @@ in partial fulfillment of the requirements for\\ the degree of Master of Statist
 
 |       To find a solution using EFA, the following steps are generally implemented with a variety of tools and techniques:
 
-|           1. **Determine the number of factors to estimate and test**. In R, this can be done by constructing a *scree plot*--a line plot of the eigenvalues of factors or principal components--and retaining the factors with an eigenvalue greater than 1.0. An value of 1.0 corresponds to the amount of variance that can be attributed to a single independent variable.
+|           1. **Determine the number of factors to estimate and test**. In R, this can be done by constructing a *scree plot*--a line plot of the eigenvalues of factors or principal components--and retaining the factors with an eigenvalue greater than 1.0. An value of 1.0 corresponds to the amount of variance that can be attributed to a *single* independent variable.
 
 |           2. **Extract factors for modeling**. Determine the variable loadings using PCA, maximum likelihood, or other methods to select the $k$ (limited to the number suggested in Step 1) factors to include and interpret. Trying more than one value of $k$--none beyond $k \pm 1$--is recommended to determine which model yields stronger interpretability.
 
@@ -132,6 +134,28 @@ in partial fulfillment of the requirements for\\ the degree of Master of Statist
 # Results
 
 ## Factor Extraction
+
+|       The process of extracting factors from our data uses the following R packages: `nFactors`,
+`GPArotation`, `psych`, `parameters`, `performance`, and `lavaan`.
+
+|       First, the `check_factorstructure()` function informs us of whether the data is even suitable for factor analysis, based on sampling adequacy and sphericity--whether the correlation matrix of the data is significantly different from an identity matrix.
+
+![Output for factor structure check]("factor_check.png")
+
+|       From the output in Figure 2, we confirm that factor analysis is the right approach to take for making inference about the data. We expect promising results from this insight, and can move on to determining how many factors we should attempt to extrapolate. Figure 3 shows the scree plot applied to the data.
+
+![Scree plot with dashed, red lines at y = 1 and x = 15 to indicate the eigenvalue threshold and majority number of components, respectively.]("scree_plot.png")
+
+|       There is not a unique solution to EFA, but we have two metrics that determined `15` factors is the optimal number to estimate. Considering the number of variables we started with, we believe this is a conservative yet suitable value for interpretability. In this scenario, it does not make sense to test 14 or 16 factors since the adjacent suggested value is 10, and the eigenvalues beyond 15 factors fall below 1.0.
+
+|       The factor analysis is performed with the `factanal()` function, which uses maximum-likelihood for fitting. The following parameter options were supplied:
+
+- `rotation = "oblimin"`
+- `scores = "regression"` - Thompson's regression method that estimates the unknown element vector of scores $f$ on element vector $x$ to yield $\hat{f}=\Lambda'\Sigma^{-1}x$, where $\Lambda$ is a matrix of loadings and $\Sigma$ the correlation matrix of $x$ [ref R doc].
+
+|       The resulting loadings are listed in the table below, with our interpretations for each grouping of variables.
+
+[table here lol]
 
 ## Model Estimation & Evaluation
 
