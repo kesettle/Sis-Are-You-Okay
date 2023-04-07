@@ -184,5 +184,5 @@ in partial fulfillment of the requirements for\\ the degree of Master of Statist
 # References
 
 ---
-nocite: '@Pappa, @Menif, @Abram, @NCES, @Chapm, @Hayduk, @Ockey'
+nocite: '@Pappa, @Menif, @Abram, @NCES, @Chapm, @Hayduk, @Ockey, @Kline, @Hu, @Matsuzaka'
 ---
