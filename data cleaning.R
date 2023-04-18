@@ -16,10 +16,18 @@ str(dat)
 #Screening requirements: Race_AA == 1, Screening_Female == 1, Screening_Age == 1, Screening_Consent == 1
 #In words, Black women who are 18+ and consent to participating in this survey
 
-screenDat <- filter(dat, Race_AA == 1, Screening_Female == 1, Screening_Age == 1, Screening_Consent == 1)
-
+screenDat <- dplyr::filter(dat, Race_AA == 1, Screening_Female == 1, Screening_Age == 1, Screening_Consent == 1)
 #CURRENT DIMENSIONS: (-371) 2260 obs. of (-0) 157 variables
 
+
+#Add forgotten question PHQ9_Q1_Little_interest - estimated as average of other PHQ9 scores
+screenDat$PHQ9_Q1_Little_interest_EST <- round((screenDat$PHQ9_Q2_Feeling_down + screenDat$PHQ9_Q3_Trouble_sleep + screenDat$PHQ9_Q4_tired_low_energy + screenDat$PHQ9_Q5_Poor_appetite_overeating + screenDat$PHQ9_Q6_Feeling_bad_about_self + screenDat$PHQ9_Q7_Trouble_concentrating + screenDat$PHQ9_Q8_thinking_slowly_fidgety + screenDat$PHQ9_Q9_SI_Thoughts)/8, digits = 0)
+
+#Add PHQ9_Q1 recode
+screenDat$PHQ9_Q1_Little_interest_EST_recode <- screenDat$PHQ9_Q1_Little_interest_EST - 1
+
+#Update PHQ9_Total_Score
+screenDat$PHQ9_Total_Score <- screenDat$PHQ9_Total_Score + screenDat$PHQ9_Q1_Little_interest_EST_recode
 
 #Variable subsetting criteria (i.e., what is being removed and why):
 #1) No viable/meaningful information (redacted or just not usable)
