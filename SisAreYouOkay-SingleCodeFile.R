@@ -72,9 +72,10 @@ closedDat <- screenDat %>% select(!c(all_of(p_rm),
                                      Employment_status_other,
                                      Zip,
                                      Focus_group_interview:id,
-                                     ends_with(c("_Total_Score","_SUM", "_Coping", "_text"))))
+                                     ends_with(c("_Total_Score","_SUM", "_Coping", "_text")),
+                                     PHQ9_Q1_Little_interest_EST))
 
-#CURRENT DIMENSIONS: (-371) 2260 obs. of (-88) 68 variables
+#CURRENT DIMENSIONS: (-371) 2260 obs. of (-91) 68 variables
 
 #Transformations
 finiDat <- closedDat %>%
@@ -84,60 +85,143 @@ finiDat <- closedDat %>%
 #All NA remaining NA values filtered out
 okDat <- na.omit(finiDat)
 
-#FINAL DIMENSIONS: (-810) 1450 obs. of (-88) 67 variables
+#FINAL DIMENSIONS: (-810) 1450 obs. of (-91) 68 variables
 
 #################################################
 #----------EXPLORATORY FACTOR ANALYSIS----------#
 #################################################
-#-----Checking that dataset is suitable for factor analysis-----#
-#Yes, very much so!
+
+#Data manipulation for the composite score-focused version of our models:
+#Total/Composite Scores for GAD and depression are kept, individual question vars held out (named `compDat`)
+
+compDat <- screenDat %>% select(!c(all_of(p_rm),
+                                   StartDate:Race_AA,
+                                   Race_Openended,
+                                   Screening_Female:Covid_Wellbeing_Financial,
+                                   Followed_Protests:Protests_police_good_job,
+                                   Prior_Covid_experienced_racial_discrimination:GAD7_Q7_afraid_something_bad,
+                                   Coping_other,
+                                   Employment_status_other,
+                                   Zip,
+                                   Focus_group_interview:id,
+                                   ends_with(c("_SUM", "_Coping", "_text"))))
+  
+compDat <- compDat %>%
+  mutate(Age = as.integer(Age)) %>%
+  rename(Academia_status = Q102)
+
+compDat <- na.omit(compDat)
+
+compDat <- compDat %>% select(!c(GAD7_Q2_cannot_stop_worrying_recode:GAD7_Q7_afraid_something_bad_recode,
+                                PHQ9_Q2_Feeling_down_recode:PHQ9_Q10_Impact_of_Problems_recode,
+                                GAD7_Q1_Feeling_nervous_Recode,
+                                PHQ9_Q1_Little_interest_EST,PHQ9_Q1_Little_interest_EST_recode))
+
+#DIMENSIONS: (-810) 1450 obs. of (-106) 53 variables
+
+#-----Checking that datasets are suitable for factor analysis-----#
+
+#okDat - Yes, very much so! KMO = 0.92
 performance::check_factorstructure(okDat)
 
+#compDat - Yes, to a slightly lower degree; KMO = 0.83
+performance::check_factorstructure(compDat)
+
+
 #-----Find principal components-----#
+
+
 #Response(s) must be removed
-pcDat <- okDat[,-c(34,67)]
+PCokDat <- okDat[,-c(34,67)]
+PCcmpDat <- compDat[,-c(34,53)]
 
-PCs <- prcomp(~ ., data = pcDat, scale = TRUE)
-summary(PCs)
+PCok <- prcomp(~ ., data = PCokDat, scale = TRUE)
+summary(PCok)
+
+PCcmp <- prcomp(~ ., data = PCcmpDat, scale = TRUE)
+summary(PCcmp)
 
 
-#Contribution of variance levels out at around 4 to 5 PCs; may consider no more than that
-plot(PCs, type = 'l')
-
+#Contribution of variance levels out at around 4 to 5 PCs for both; may consider no more than that
 par(mfrow = c(1, 2))
-plot(PCs$sdev^2/sum(PCs$sdev^2), xlab = "Principal Component",
+plot(PCok, type = 'l')
+plot(PCcmp, type = 'l')
+
+#-----Plots of variance explained by PCs-----#
+
+#okDat
+plot(PCok$sdev^2/sum(PCok$sdev^2), main = "PCs for okDat", xlab = "Principal Component",
      ylab = "Proportion of Variance Explained", ylim = c(0, 1), type = 'b')
 abline(v=15)
-plot(cumsum(PCs$sdev^2/sum(PCs$sdev^2)), xlab = "Principal Component",
+plot(cumsum(PCok$sdev^2/sum(PCok$sdev^2)), xlab = "Principal Component",
+     ylab = "Cum. Prop of Variance Explained", ylim = c(0, 1), type = 'b')
+abline(v = c(5,10,15), h = c(0.4,0.5,0.6))
+
+#compDat
+plot(PCcmp$sdev^2/sum(PCcmp$sdev^2), main = "PCs for compDat", xlab = "Principal Component",
+     ylab = "Proportion of Variance Explained", ylim = c(0, 1), type = 'b')
+abline(v=15)
+plot(cumsum(PCcmp$sdev^2/sum(PCcmp$sdev^2)), xlab = "Principal Component",
      ylab = "Cum. Prop of Variance Explained", ylim = c(0, 1), type = 'b')
 abline(v = c(5,10,15), h = c(0.4,0.5,0.6))
 
 #-----Estimate number of factors to retain with scree test-----#
-#15 seems to be the majority
-okScr <- nScree(pcDat)
+#okDat - 15 seems to be the majority
+okScr <- nScree(PCokDat)
 okScr
 
-#Examine the eigenvalues
+#compDat - 14 seems to be the majority
+cmpScr <- nScree(PCcmpDat)
+cmpScr
 
-#The first 15 are > 1.0, so this suggests about 15 factors; the first 5 >> 1.0,
+#-----Examine the eigenvalues-----#
+
+#okDat - The first 15 are > 1.0, so this suggests about 15 factors; the first 5 >> 1.0,
 #which is consistent with the PCA
-round(eigen(cor(pcDat))$values, 4)
+round(eigen(cor(PCokDat))$values, 4)
 
-#-----Estimate and Compare EFA models with k = 5 vs 15 factors-----#
+#compDat - The first 14 are > 1.0, so this suggests about 14 factors; the first 4 >> 1.0,
+#which is, again, consistent with the PCA
+round(eigen(cor(PCcmpDat))$values, 4)
 
-okEFA15 <- factanal(pcDat, factors = 15, scores = "regression", rotation = "oblimin")
-#EFAPromax <- factanal(pcDat, factors = 15, scores = "regression", rotation = "promax")
+#-----Compare EFA with k factors-----#
 
-print(okEFA15$loadings, sort = TRUE, cutoff = 0.3)
+#Determining/confirming number of factors to retain based on various methods/metrics
 
-#-----Fit EFA using psych package-----#
-faOK <- fa(pcDat, nfactors = 15) %>%
+#okDat - 15 is tied with other values, so should be reasonable; the highest of 65 is definitely not
+ok.n <- n_factors(PCokDat)
+plot(ok.n) + see::theme_modern()
+
+#compDat - Highest is 3, definitely not sufficient for the dimensions; 14 has moderate stake
+cmp.n <- n_factors(PCcmpDat)
+plot(cmp.n) + see::theme_modern()
+
+
+#-----Fit EFA models using psych package and output loadings to csv files-----#
+
+#okDat, oblimin then varimax
+faOK.oblimin <- fa(PCokDat, nfactors = 15, rotate = "oblimin") %>%
   model_parameters(sort = TRUE, threshold = "max")
 
-#Determining number of factors to retain based on various methods/metrics
-n <- n_factors(pcDat)
+write.csv(faOK.oblimin, "EFA_loadings_Oblimin_Raw.csv")
 
-plot(n) + see::theme_modern()
+faOK.varimax <- fa(PCokDat, nfactors = 15, rotate = "varimax") %>%
+  model_parameters(sort = TRUE, threshold = "max")
+
+write.csv(faOK.varimax, "EFA_loadings_Varimax_Raw.csv")
+
+#compDat, oblimin then varimax
+faCmp.oblimin <- fa(PCcmpDat, nfactors = 14, rotate = "oblimin") %>%
+  model_parameters(sort = TRUE, threshold = "max")
+
+write.csv(faCmp.oblimin, "EFA_loadings_Oblimin_Total.csv")
+
+faCmp.varimax <- fa(PCcmpDat, nfactors = 14, rotate = "varimax") %>%
+  model_parameters(sort = TRUE, threshold = "max")
+
+write.csv(faCmp.varimax, "EFA_loadings_Varimax_Total.csv")
+
+
 
 ###################################################
 #----------STRUCTURAL EQUATIONS MODELING----------#
