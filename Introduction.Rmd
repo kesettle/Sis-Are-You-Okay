@@ -140,22 +140,22 @@ in partial fulfillment of the requirements for\\ the degree of Master of Statist
 
 |       First, the `check_factorstructure()` function informs us of whether the data is even suitable for factor analysis, based on sampling adequacy and sphericity--whether the correlation matrix of the data is significantly different from an identity matrix.
 
-![Output for factor structure check]("factor_check.png")
+![Output of preliminary testing for the data. The Kaiser-Meyer-Olkin (KMO) test measure is 0.92. According to Kaiser, values of KMO > 0.9 are marvelous. Bartlett's test of sphericity tests the hypothesis of whether the correlation matrix is an identity matrix. If the null hypothesis is rejected, then we can assume the variables are correlated. Here, the test suggests that the data is significantly correlated and suitable for factor analysis.]("factor_check.png")
 
-|       From the output in Figure 2, we confirm that factor analysis is the right approach to take for making inference about the data. We expect promising results from this insight, and can move on to determining how many factors we should attempt to extrapolate. Figure 3 shows the scree plot applied to the data.
+|       From Figure 2, we confirm that factor analysis is the right approach to take for making inference about the data. We expect promising results from this insight, and can move on to determining how many factors we should attempt to extrapolate. Figure 3 shows the scree plot applied to the data.
 
-![Scree plot with dashed, red lines at y = 1 and x = 15 to indicate the eigenvalue threshold and majority number of components, respectively.]("scree_plot.png")
+![Scree plot applied to survey data. Dashed, red lines at y = 1 and x = 15 indicate the eigenvalue threshold of 1.0 and the largest number of suggested components, respectively. The intersection of these lines is the "optimal" target for factors that should be included.]("scree_plot.png")
 
 |       There is not a unique solution to EFA, but we have two metrics that determined `15` factors is the optimal number to estimate. Considering the number of variables we started with, we believe this is a conservative yet suitable value for interpretability. In this scenario, it does not make sense to test 14 or 16 factors since the adjacent suggested value is 10, and the eigenvalues beyond 15 factors fall below 1.0.
 
-|       The factor analysis is performed with the `factanal()` function, which uses maximum-likelihood for fitting. The following parameter options were supplied:
+|       The factor analysis is performed with the `fa()` function, which uses maximum-likelihood for fitting. The following parameter options were supplied:
 
-- `rotation = "oblimin"`
-- `scores = "regression"` - Thompson's regression method that estimates the unknown element vector of scores $f$ on element vector $x$ to yield $\hat{f}=\Lambda'\Sigma^{-1}x$, where $\Lambda$ is a matrix of loadings and $\Sigma$ the correlation matrix of $x$ [ref R doc].
+- `rotation = "oblimin"` - Since is study prioritizes uncovering associations between variables, it is less compelling to assume independence among them, even though orthogonal rotations are generally simpler to interpret. The difference is also not significant for this data, so `oblimin` is preferred.
+- `scores = "regression"` - Thompson's regression method that estimates the unknown element vector of scores $f$ on element vector $x$ to yield $\hat{f}=\Lambda'\Sigma^{-1}x$, where $\Lambda$ is a matrix of loadings and $\Sigma$ the correlation matrix of $x$ (Revelle, 2023).
 
-|       The resulting loadings are listed in the table below, with our interpretations for each grouping of variables.
+|       The resulting loadings are listed in the table on page 11 (Figure 4), with our interpretations for each grouping of variables.
 
-![Table of the variables, loadings, and the factors that will serve as the basis for the SEM model]("factor_loadings.pdf")
+![Table of the variables, loadings, and the factors that will serve as the basis for the SEM model. Descriptions and names for each factor are provided. The variables highlighted in purple are below the moderate correlation threshold of 0.2, and provide no significant contribution to the factor of which they are assigned.]("factor_loadings.pdf")
 
 ## Model Estimation & Evaluation
 |       A multi-stage SEM approach: model specification, model identification, model estimation and evaluation, and model modification was employed in order to evaluate the 15 loadings fitted from the factor analysis. Model specification was comprised of defining relationships among the loadings. Upon confirmation of model identification, subsequent models were evaluated by using a variety of recommended indices such as, chi-square, comparative ft index (CFI), and Tucker-Lewis Index (TLI), root mean square error of approximation (RMSEA), and standardized root mean square residual (SRMR) (Kline, 2010). For the CFI and TLI, a value $\ge$ .90 was considered acceptable, and a value $\ge$ .95 considered a good fit (Hu & Bentler, 1999). For the RMSEA, a value < .08 was considered acceptable, and a value < .06 considered good fit (Hu & Bentler, 1999). For the SRMR, a value of < .05 was considered a good fit. Although the chi-square statistic are reported, less emphasis is placed on this measure due to its sensitivity to large samples (Hu & Bentler,1999). 
@@ -173,7 +173,7 @@ in partial fulfillment of the requirements for\\ the degree of Master of Statist
 
 # Discussion
 |       The current study investigated the associations between various factors surrounding the COVID-19 pandemic and anti-Black racism that influence the extent to which Black women suffer from depression, anxiety, and other mental health issues. Our results demonstrated significant associations between (1) symptoms of depression related to feeling shame or failure and difficulties with executive functioning, (2) coping mechanisms to target emotional resiliency and psychological well-being, (3) the impact of the COVID-19 pandemic on aspects of a respondent's well-being, (4) a respondent's experience of racial discrimination circa pandemic, and (5) symptoms of anxiety and depression related to restlessness and unhealthy or out-of-character means of managing it. 
-|       Additionally, our results indicated a significant negative association between a respondent's COVID-19 diagnosis and prognosis outcomes in their life (for themselves and others), and a respondent's symptoms of anxiety related to feeling uneasy or tense. Symptoms of anxiety were also indicated to be significantly associated with (1) coping mechanisms to target emotional resiliency and psychological well-being, (2) a respondent's experience of racial discrimination circa pandemic, and (3) a respondent's decision making habits influenced by their political ideology.  
+|       Additionally, our results indicated a significant negative association between a respondent's COVID-19 diagnosis and prognosis outcomes in their life (for themselves and others), and a respondent's symptoms of anxiety related to feeling uneasy or tense. Symptoms of anxiety were also indicated to be significantly associated with (1) coping mechanisms to target emotional resiliency and psychological well-being, (2) a respondent's experience of racial discrimination circa pandemic, and (3) a respondent's decision making habits influenced by their political ideology.
 
 
 
@@ -184,5 +184,5 @@ in partial fulfillment of the requirements for\\ the degree of Master of Statist
 # References
 
 ---
-nocite: '@Pappa, @Menif, @Abram, @NCES, @Chapm, @Hayduk, @Ockey, @Kline, @Hu, @Matsuzaka'
+nocite: '@Pappa, @Menif, @Abram, @NCES, @Chapm, @Hayduk, @Ockey, @Kline, @Hu, @Matsuzaka, @Revelle'
 ---
