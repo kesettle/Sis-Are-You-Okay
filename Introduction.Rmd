@@ -88,9 +88,11 @@ in partial fulfillment of the requirements for\\ the degree of Master of Statist
 
 ## The Data
 
-|       A survey was conducted via a paid panel to find out how Black women across the United States were coping. Data was collected from April to December 2022, accumulating 2631 respondents. The survey consisted of 70 questions asking about the following domains: COVID-19, Anti-Black Racism, Depression, Anxiety, and Demographic information.  
+|       A survey was conducted via a paid panel to find out how Black women across the United States were coping. Data was collected from April to December 2022, accumulating 2631 respondents. The survey consisted of 70 questions asking about the following domains: COVID-19 (13 questions), Anti-Black Racism (12 questions), Depression (9 questions), Anxiety (7 questions), Coping (13 questions), and Demographic information (16 questions).  
 
-|       The raw data consists of 157 variables and 2631 subjects. Since this research focuses on Black women, there were questions to screen out participants who were not adult, Black females that consented to the survey. There were 2260 subjects that fit the requirements. Variables that were irrelevant to analysis were also removed, such as personal information or variables that had been recoded, leaving 80 variables for analysis. The data has also been validated by removing potential duplicates (i.e., a respondent had to restart the survey and was recorded twice); and ensuring values for a given variable are all of the same type (e.g., all values for `age` are numeric).
+|       The 7 anxiety questions were from the Generalized Anxiety Disorder screening test (GAD-7). Similarly, the questions asking about depression were the screening questions from the Patient Health Questionnaire (PHQ-9) as well as the question asked after the screening. However, the first of the 9 screening question of the PHQ-9 was mistakenly omitted from the survey. To be complete, we estimated each subject's response to this based on their responses to the other 8 screening questions. 
+
+|       The raw data consists of 157 variables and 2631 subjects. With the addition of the first PHQ-9 screening question, the data contained 159 variables. Since this research focuses on Black women, there were questions to screen out participants who were not adult, Black females that consented to the survey. There were 2260 subjects that fit the requirements. Variables that were irrelevant to analysis were also removed, such as personal information or variables that had been recoded, leaving 81 variables for analysis. The data has also been validated by removing potential duplicates (i.e., a respondent had to restart the survey and was recorded twice); and ensuring values for a given variable are all of the same type (e.g., all values for `age` are numeric). 
 
 |       Initially, we believed this was sufficient for implementing the methods outlined in the following sections. During preliminary testing, however, two other issues with the data surfaced: missing values and linear dependencies. Factor analysis methods will not do any calculations with *any* missing values, and often throw an error. They are also susceptible to generating factors with egregious inflated variances if there are variables that can be expressed as linear combinations of others. So, variables and observations that met the following criteria were filtered out:
 
@@ -98,7 +100,7 @@ in partial fulfillment of the requirements for\\ the degree of Master of Statist
 - The proportion of NA observations. Each variable either consists of more than 95% empty observations, or less than 15%. In the former case, the variable was omitted. In the latter case, the observations with the NA value(s) were removed.
 - Variables that represent composite scores (the sums or averages of other variables), which were causing the redundancy and linear dependence in the data. 
 
-|       The final dataset consists of 65 variables and 1450 subjects. For many applications, this may be a concern, but as the rest of the report will show, this proved beneficial in containing the volume before applying any algorithmic dimension reduction.
+|       The final dataset consists of 66 variables and 1450 subjects. For many applications, this may be a concern, but as the rest of the report will show, this proved beneficial in containing the volume before applying any algorithmic dimension reduction.
 
 
 ## Structural Equation Modeling (SEM)
