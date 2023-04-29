@@ -88,7 +88,7 @@ in partial fulfillment of the requirements for\\ the degree of Master of Statist
 
 ## The Data
 
-|       A survey was conducted via a paid panel to find out how Black women across the United States were coping. Data was collected from April to December 2022, accumulating 2631 respondents. The survey consisted of 70 questions asking about the following domains: COVID-19 (13 questions), Anti-Black Racism (12 questions), Depression (9 questions), Anxiety (7 questions), Coping (13 questions), and Demographic information (16 questions).  
+|       A survey was conducted via a paid panel to find out how Black women across the United States were coping. Data was collected from April to December 2022, accumulating 2631 respondents. The survey consisted of 70 questions asking about the following domains: COVID-19 (13 questions), Anti-Black Racism (12 questions), Depression (9 questions), Anxiety (7 questions), Coping Methods (13 questions), and Demographic information (16 questions).  
 
 |       The 7 anxiety questions were from the Generalized Anxiety Disorder screening test (GAD-7). Similarly, the questions asking about depression were the screening questions from the Patient Health Questionnaire (PHQ-9) as well as the question asked after the screening. However, the first of the 9 screening question of the PHQ-9 was mistakenly omitted from the survey. To be complete, we estimated each subject's response to this based on their responses to the other 8 screening questions. 
 
@@ -175,7 +175,7 @@ in partial fulfillment of the requirements for\\ the degree of Master of Statist
 
 # Discussion
 |       The current study investigated the associations between various factors surrounding the COVID-19 pandemic and anti-Black racism that influence the extent to which Black women suffer from depression, anxiety, and other mental health issues. Our results demonstrated significant associations between a respondent's symptoms of anxiety, decision making habits influenced by their political ideology, COVID-19 diagnosis and prognosis outcomes for people in respondent's life, and the impact of the COVID-19 pandemic on aspects of respondent's well-being. 
-|       Additionally, results also displayed significant associations between a respondent's symptoms of depression with potential for unhealthy coping mechanicms via alcohol/drugs, and the impact of the COVID-19 pandemic on aspects of respondent's well-being. Lastly, results indicated significant associations between a respondent's symptoms of anxiety and the coping mechanisms they use to target emotional resiliency, focused on psychological well-being. 
+|       Additionally, results also displayed significant associations between a respondent's symptoms of depression with potential for unhealthy coping mechanics via alcohol/drugs, and the impact of the COVID-19 pandemic on aspects of respondent's well-being. Lastly, results indicated significant associations between a respondent's symptoms of anxiety and the coping mechanisms they use to target emotional resiliency, focused on psychological well-being. 
 
 
 
