@@ -229,7 +229,7 @@ write.csv(faCmp.varimax, "EFA_loadings_Varimax_Total.csv")
 #----Data Checks ----#
 describe(okDat)
 
-#----Test Models for Structural Equation Modeling (SEM)----#
+#----Test Models for Structural Equation Modeling (SEM) - Attempt 1----#
 full_model <- "
 Factor1  =~ Factor9 + Covid_wellbeing_financial_recode + Covid_wellbeing_social_recode + Covid_Wellbeing_Physical_recode + Covid_wellbeing_overall_recode + Covid_wellbeing_psychological_recode + Covid_wellbeing_Emotional_recode 
 
@@ -341,7 +341,7 @@ sem$fit
 semPaths(sat.fit, what="est", fade=FALSE, residuals=FALSE, layout="tree2", structural=TRUE, nCharNodes=12, edge.label.cex=1)
 
 
-#----Structural Equation Modeling (SEM) Final Models----#
+#----Test Models for Structural Equation Modeling (SEM) - Attempt 2----#
 #full model
 full_model <- "
 Pandemic_Impact  =~ Covid_Impact + Covid_wellbeing_financial_recode + Covid_wellbeing_social_recode + Covid_Wellbeing_Physical_recode + Covid_wellbeing_overall_recode + Covid_wellbeing_psychological_recode + Covid_wellbeing_Emotional_recode 
@@ -413,3 +413,95 @@ semPaths(sem_anxiety, layout="tree2", nCharNodes = 0, residual=FALSE,
          shapeInt = "triangle", sizeMan = 5, sizeInt = 5, sizeLat = 5, 
          curve=2, unCol = "black", structural=TRUE,
          filetype = "pdf", width = 8, height = 6, filename = "SEM Anxiety")
+
+
+
+
+#----Test Models for Structural Equation Modeling (SEM) - Attempt 3 (Final)----#
+
+full_model <- "
+anxiety=~GAD7_Q2_cannot_stop_worrying_recode+GAD7_Q7_afraid_something_bad_recode+GAD7_Q4_trouble_relaxing_recode+GAD7_Q1_Feeling_nervous_Recode+GAD7_Q5_restless_recode+GAD7_Q6_irritable_recode
+
+depression=~PHQ9_Q4_tired_low_energy_recode+PHQ9_Q5_Poor_appetite_overeating_recode+PHQ9_Q3_Trouble_sleep_recode+PHQ9_Q6_Feeling_bad_about_self_recode+PHQ9_Q2_Feeling_down_recode+PHQ9_Q7_Trouble_concentrating_recode+PHQ9_Q8_thinking_slowly_fidgety_recode+PHQ9_Q9_SI_Thoughts_recode+PHQ9_Q10_Impact_of_Problems_recode+Coping_alcohol_drugs
+
+racism_protest_sentiment=~Protests_sympathy_recode+Protests_appropriate_response_recode+Prior_Covid_Racism+Followed_Protests_recode+Covid_Racism_increased+Population_density
+
+healthy_coping=~Coping_exercise+Coping_outdoors+Coping_pleasurable_activities+Coping_spiritual
+
+pandemic_impact=~Covid_wellbeing_psychological_recode+Covid_wellbeing_overall_recode+Covid_Wellbeing_Physical_recode+Covid_wellbeing_financial_recode+Covid_wellbeing_social_recode
+
+exp_racism=~Covid_experienced_racial_discrimination_recode
+
+personal_id=~Protest_Participation+Political_views+Sexual_Orientation+Find_out_study+Age
+
+covid_dx_status=~Covid_isolate
+socioecon_status=~Education+Marital_status
+
+govt_sentiment=~Protests_police_good_job_recode+Protests_propertydamanage_undermine_recode
+
+emotional_coping=~Coping_distract_work+Coping_optimism+Coping_humor+Coping_not_show_emotions+Coping_emotional_support
+
+politics_descisions=~Political_affliation+Covid_Vaccine
+
+covid_impact_others=~Covid_death+Covid_family_Friends
+
+employment_status=~Employment_status
+"
+#depression=~PHQ9_Q4_tired_low_energy_recode+PHQ9_Q5_Poor_appetite_overeating_recode+PHQ9_Q3_Trouble_sleep_recode+PHQ9_Q6_Feeling_bad_about_self_recode+PHQ9_Q2_Feeling_down_recode+PHQ9_Q7_Trouble_concentrating_recode+PHQ9_Q8_thinking_slowly_fidgety_recode+PHQ9_Q9_SI_Thoughts_recode+PHQ9_Q10_Impact_of_Problems_recode+Coping_alcohol_drugs
+
+
+sat.fit <- sem(full_model, data= okDat, std.lv=TRUE)
+lavInspect(sat.fit, "cov.lv") 
+summary(sat.fit, fit.measures= TRUE)
+
+anxiety_model <- "
+anxiety=~emotional_coping+GAD7_Q2_cannot_stop_worrying_recode+GAD7_Q7_afraid_something_bad_recode+GAD7_Q4_trouble_relaxing_recode+GAD7_Q1_Feeling_nervous_Recode+GAD7_Q5_restless_recode+GAD7_Q6_irritable_recode
+
+emotional_coping=~Coping_distract_work+Coping_optimism+Coping_humor+Coping_not_show_emotions+Coping_emotional_support
+
+pandemic_impact=~anxiety+Covid_wellbeing_psychological_recode+Covid_wellbeing_overall_recode+Covid_Wellbeing_Physical_recode+Covid_wellbeing_financial_recode+Covid_wellbeing_social_recode
+
+covid_impact_others=~anxiety+Covid_death+Covid_family_Friends
+
+politics_descisions=~anxiety+Political_affliation+Covid_Vaccine
+"
+
+sat.fit <- sem(anxiety_model, data= okDat, std.lv=TRUE)
+summary(sat.fit, fit.measures= TRUE)
+lavInspect(sat.fit, "cov.lv") 
+
+semPaths(sat.fit, layout="tree2", nCharNodes = 0, residual=FALSE,
+         whatLabels = "est", edge.label.cex = 1, node.label.cex = 1, 
+         label.prop=0.9, edge.label.color = "black", rotation = 2, 
+         equalizeManifests = TRUE, optimizeLatRes = TRUE, node.width = 2, 
+         edge.width = 1.5, shapeMan = "rectangle", shapeLat = "circle", 
+         shapeInt = "triangle", sizeMan = 5, sizeInt = 5, sizeLat = 5, 
+         curve=2, unCol = "black", structural=TRUE, 
+         filetype = "pdf", width = 8, height = 6, filename = "SEM Anxiety v2")
+
+
+depression_model <- "
+depression=~PHQ9_Q4_tired_low_energy_recode+PHQ9_Q5_Poor_appetite_overeating_recode+PHQ9_Q3_Trouble_sleep_recode+PHQ9_Q6_Feeling_bad_about_self_recode+PHQ9_Q2_Feeling_down_recode+PHQ9_Q7_Trouble_concentrating_recode+PHQ9_Q8_thinking_slowly_fidgety_recode+PHQ9_Q9_SI_Thoughts_recode+PHQ9_Q10_Impact_of_Problems_recode+Coping_alcohol_drugs
+
+pandemic_impact=~depression+Covid_wellbeing_psychological_recode+Covid_wellbeing_overall_recode+Covid_Wellbeing_Physical_recode+Covid_wellbeing_financial_recode+Covid_wellbeing_social_recode
+
+covid_impact_others=~pandemic_impact+Covid_death+Covid_family_Friends
+
+healthy_coping=~pandemic_impact+Coping_exercise+Coping_outdoors+Coping_pleasurable_activities+Coping_spiritual
+"
+
+sat.fit <- sem(depression_model, data= okDat, std.lv=TRUE)
+summary(sat.fit, fit.measures= TRUE)
+sem$fit
+
+lavInspect(sat.fit, "cov.lv") 
+
+semPaths(sat.fit, layout="tree2", nCharNodes = 0, residual=FALSE,
+         whatLabels = "est", edge.label.cex = 1, node.label.cex = 1, 
+         label.prop=0.9, edge.label.color = "black", rotation = 2, 
+         equalizeManifests = TRUE, optimizeLatRes = TRUE, node.width = 2, 
+         edge.width = 1.5, shapeMan = "rectangle", shapeLat = "circle", 
+         shapeInt = "triangle", sizeMan = 5, sizeInt = 5, sizeLat = 5, 
+         curve=2, unCol = "black", structural=TRUE, 
+         filetype = "pdf", width = 8, height = 6, filename = "SEM Depression v2")
+
